@@ -20,7 +20,7 @@ sh "${mavenHome}/bin/mvn clean sonar:sonar"
 }
 
 stage('UploadArtifactsIntoArtifactoryRepo'){
-sh "${mavenHome}/bin/mvn clean deploy"
+sh "${mavenHome}/bin/mvn clean deploy2"
 }
 stage('UploadArtifactsIntoArtifactoryRepo'){
 sshagent(['f19341b0-47a5-49ea-954a-357ee1d7e3d7']) {
