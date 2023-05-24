@@ -4,9 +4,9 @@ node{
 
     echo "Node name is :${env.NODE_NAME}"
     echo "Jenkins url is :${env.JENKINS_URL}"
-    /*
-    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([cron('* * * * *')])])
-    */
+    
+    //properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([cron('* * * * *')])])
+    
     stage('CheckOutCode')
     {
         git branch: 'development', credentialsId: 'a8e12d22-aa38-47e7-9f56-52e3c7a0c867', url: 'https://github.com/santoshkovvada/maven-web-application.git'
