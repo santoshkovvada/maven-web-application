@@ -11,9 +11,11 @@ pipeline{
             }
      */
     //triggers:triggers options for pollscm 
+    /*
     triggers {
         pollSCM '* * * * * '
              }
+    */
     stages {
         stage('CheckOutCode'){
             steps{
