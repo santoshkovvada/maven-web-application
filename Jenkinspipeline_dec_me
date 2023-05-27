@@ -4,10 +4,12 @@ pipeline{
         maven "Maven 3.9.2"
     }
     //keep only 5 builds and delete old builds
+    /*
     options {
         timestamps
          buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')
             }
+     */
     //triggers:triggers options for pollscm 
     triggers {
         pollSCM '* * * * * '
