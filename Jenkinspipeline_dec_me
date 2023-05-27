@@ -1,0 +1,48 @@
+pipeline{
+    agent any 
+    tools{
+        maven "Maven 3.9.2"
+    }
+    //keep only 5 builds and delete old builds
+    options {
+        timestamps
+         buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')
+            }
+    //triggers:triggers options for pollscm 
+    triggers {
+        pollSCM '* * * * * '
+             }
+    stages {
+        stage('CheckOutCode'){
+            steps{
+                 git branch: 'development', credentialsId: 'a8e12d22-aa38-47e7-9f56-52e3c7a0c867', url: 'https://github.com/santoshkovvada/maven-web-application.git'
+            }
+        }
+        stage('Build'){
+            steps{
+                sh "mvn clean package"
+            }
+        }
+        /*
+        stage('Execute Sonar Qube Report'){
+            steps{
+                sh "mvn clean sonar:sonar"
+            }
+        }
+        stage('Upload Artifactory Repo'){
+            steps{
+                sh "mvn clean deploy"
+            }
+        }
+        stage('Deploy App into Tomcat Server'){
+            steps{
+                sshagent(['b84d49c0-689b-4dc0-8027-3912ef27fed4']) {
+    sh " scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@65.0.72.139:/opt/apache-tomcat-8.5.88/webapps/ "
+
+            }
+        }
+        }
+        */
+
+    }//stages closing
+}//Node closing
