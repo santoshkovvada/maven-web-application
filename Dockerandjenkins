@@ -16,8 +16,14 @@ pipeline{
             }
         }
         stage('Build DOcker Image'){
-            steps{
-                sh "docker build -t ksantoshk/ci-repo:1 ."
+           agent {
+                docker {
+                    image 'gradle:6.7-jdk11'
+                        }
+           
+           /*steps{
+                sh "docker build -t ksantoshk/ci-repo:1 ." }
+                */
             }
         }
     
