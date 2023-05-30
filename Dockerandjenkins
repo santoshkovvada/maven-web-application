@@ -1,0 +1,26 @@
+pipeline{
+    agent any 
+    tools{
+        maven "Maven 3.9.2"
+    }
+    
+    stages {
+        stage('CheckOutCode'){
+            steps{
+                 git branch: 'development', credentialsId: 'a8e12d22-aa38-47e7-9f56-52e3c7a0c867', url: 'https://github.com/santoshkovvada/maven-web-application.git'
+            }
+        }
+        stage('Build'){
+            steps{
+                sh "mvn clean package"
+            }
+        }
+        stage('Build DOcker Image'){
+            steps{
+                sh "docker build -t ksantoshk/ci-repo:1 ."
+            }
+        }
+    
+
+    }//stages closing
+}//Node closing
