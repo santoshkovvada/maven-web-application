@@ -21,7 +21,7 @@ pipeline {
                     def dockerTool = tool 'Docker' // Specify the name of the Docker tool configured in Jenkins
 
                     withEnv(["DOCKER_TOOL_PATH=${dockerTool}/bin"]) {
-                        sh 'curl -fsSL https://get.docker.com -o get-docker.sh'
+                        sh 'curl -fsSL https://get.docker.com |/bin/bash'
                         sh 'sh get-docker.sh'
                     }
                 }
