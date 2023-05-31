@@ -1,7 +1,6 @@
 pipeline {
     agent any
-    
-        tools{
+    tools{
         maven "Maven 3.9.2"
          }
     
@@ -11,22 +10,5 @@ pipeline {
                  git branch: 'development', credentialsId: 'a8e12d22-aa38-47e7-9f56-52e3c7a0c867', url: 'https://github.com/santoshkovvada/maven-web-application.git'
             }
         }
-        stage('Build'){
-            steps{
-                sh "mvn clean package"
-            }
         }
-         stage('Install Docker') {
-            steps {
-                script {
-                    def dockerTool = tool 'Docker' // Specify the name of the Docker tool configured in Jenkins
-
-                    withEnv(["DOCKER_TOOL_PATH=${dockerTool}/bin"]) {
-                        sh 'curl -fsSL https://get.docker.com |/bin/bash'
-                        sh 'sh get-docker.sh'
-                    }
-                }
-            }
         }
-    }
-}
