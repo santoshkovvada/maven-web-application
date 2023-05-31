@@ -1,9 +1,9 @@
-pipeline{
-    // agent any 
-    agent { dockerfile true }
-    tools{
+pipeline {
+    agent any
+    
+        tools{
         maven "Maven 3.9.2"
-    }
+         }
     
     stages {
         stage('CheckOutCode'){
@@ -16,18 +16,17 @@ pipeline{
                 sh "mvn clean package"
             }
         }
-        stage('Build DOcker Image'){
-           steps {
-                docker {
-                    image 'gradle:6.7-jdk11'
-                        }
-           
-           /*steps{
-                sh "docker build -t ksantoshk/ci-repo:1 ." }
-                */
-                 }
-        }
-    
+         stage('Install Docker') {
+            steps {
+                script {
+                    def dockerTool = tool 'Docker' // Specify the name of the Docker tool configured in Jenkins
 
-    }//stages closing
-}//Node closing
+                    withEnv(["DOCKER_TOOL_PATH=${dockerTool}/bin"]) {
+                        sh 'curl -fsSL https://get.docker.com -o get-docker.sh'
+                        sh 'sh get-docker.sh'
+                    }
+                }
+            }
+        }
+    }
+}
