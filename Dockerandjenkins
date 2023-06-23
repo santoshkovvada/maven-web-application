@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Build Docker Image'){
             steps{
-                sh "docker build -d ksantosh/newimage:1 "
+                sh "docker build -t ksantoshk/newimage:1 "
                  }
         }
         /*stage('Build  DockerImage ') {
