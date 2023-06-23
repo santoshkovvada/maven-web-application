@@ -20,8 +20,10 @@ pipeline {
         stage('Build  DockerImage ') {
             steps{
                   withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
-                  sh "docker build -t ksantoshk/jenkinsdockerk8s:${buildNumber} ."
+                  sh "docker login -u ksantoshk -p ${DOCKER_HUB_CREDENTIALS}"
                   }
+                  sh "docker build -t ksantoshk/jenkinsdockerk8s:${buildNumber} ."
+                  
                   }
         }
         
