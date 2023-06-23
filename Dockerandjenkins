@@ -5,6 +5,7 @@ pipeline {
          }
     
     stages {
+     def buildNumber = BUILD_NUMBER
         stage('CheckOutCode'){
             steps{
                  git branch: 'development', credentialsId: 'a8e12d22-aa38-47e7-9f56-52e3c7a0c867', url: 'https://github.com/santoshkovvada/maven-web-application.git'
@@ -15,17 +16,12 @@ pipeline {
                 sh "mvn clean package"
             }
         }
-         /*stage('Install Docker') {
+         stage('Build  DockerImage ') {
             steps {
-                  sh '''
-                  echo "Venkatajai@9955" | sudo -S yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-                  echo "Venkatajai@9955" | sudo -S dnf install docker-ce-3:18.09.1-3.el7 -y
-                  echo "Venkatajai@9955" | sudo -S systemctl enable docker
-                  echo "Venkatajai@9955" | sudo -S systemctl start docker
-                  '''
+                  sh "docker build -t vijaybrd/spring-boot-mongo:${buildNumber} ."
 
              }
         }
-        */
+        
     }
 }
