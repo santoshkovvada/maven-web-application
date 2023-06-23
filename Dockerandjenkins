@@ -1,9 +1,12 @@
 pipeline {
     agent any
+    environment{
+    buildNumber = BUILD_NUMBER
+    }
     tools{
         maven "Maven 3.9.2"
          }
-    def buildNumber = BUILD_NUMBER
+    #def buildNumber = BUILD_NUMBER
     stages {
         stage('CheckOutCode'){
             steps{
