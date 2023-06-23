@@ -3,9 +3,8 @@ pipeline {
     tools{
         maven "Maven 3.9.2"
          }
-    
+    def buildNumber = BUILD_NUMBER
     stages {
-        def buildNumber = BUILD_NUMBER
         stage('CheckOutCode'){
             steps{
                  git branch: 'development', credentialsId: 'a8e12d22-aa38-47e7-9f56-52e3c7a0c867', url: 'https://github.com/santoshkovvada/maven-web-application.git'
