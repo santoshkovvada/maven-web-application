@@ -17,15 +17,20 @@ pipeline {
                 sh "mvn clean package"
                  }
         }
-        stage('Build  DockerImage ') {
+        stage('Build Docker Image'){
+            steps{
+                sh "docker build -d ksantosh/newimage:1 "
+                 }
+        }
+        /*stage('Build  DockerImage ') {
             steps{
                   withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
                   sh "docker login -u ksantoshk -p ${DOCKER_HUB_CREDENTIALS}"
                   }
-                  /* sh "docker build -t ksantoshk/jenkinsdockerk8s:${buildNumber} ." */
+                  # sh "docker build -t ksantoshk/jenkinsdockerk8s:${buildNumber} ."
                   
                   }
-        }
+        }*/
         
     }
 }
