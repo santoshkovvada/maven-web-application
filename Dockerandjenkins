@@ -15,7 +15,7 @@ pipeline {
                 sh "mvn clean package"
             }
         }
-         stage('Install Docker') {
+         /*stage('Install Docker') {
             steps {
                   sh '''
                   echo "Venkatajai@9955" | sudo -S yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
@@ -26,5 +26,6 @@ pipeline {
 
              }
         }
+        */
     }
 }
