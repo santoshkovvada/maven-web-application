@@ -6,7 +6,6 @@ pipeline {
     tools{
         maven "Maven 3.9.2"
          }
-    #def buildNumber = BUILD_NUMBER
     stages {
         stage('CheckOutCode'){
             steps{
