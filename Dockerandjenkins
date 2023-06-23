@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Build  DockerImage ') {
             steps{
-                  sh "docker build -t ksantoshk/mavenwebapp:${buildNumber} ."
+                  sh "docker build -t ksantoshk/jenkinsdockerk8s:${buildNumber} ."
 
                   }
         }
